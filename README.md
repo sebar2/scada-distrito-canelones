@@ -20,4 +20,4 @@ El sistema prioriza la **baja latencia y la mantenibilidad operativa**, eliminan
 * Alertas perimetrales para concentraciones de NO2.
 
 ## 🔗 Demostración en Vivo
-El dashboard funcional puede visualizarse en el siguiente enlace:
+El dashboard funcional puede visualizarse en el siguiente enlace:https://sebarodriguez.github.io/scada-distrito-canelones
