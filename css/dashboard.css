@@ -1,0 +1,35 @@
+/* css/dashboard.css */
+
+/* Animación de alerta para emergencias críticas */
+@keyframes parpadeo-critico {
+    0% { opacity: 1; background-color: rgba(211, 47, 47, 0.3); }
+    50% { opacity: 0.6; background-color: transparent; }
+    100% { opacity: 1; background-color: rgba(211, 47, 47, 0.3); }
+}
+
+.estado-emergencia {
+    animation: parpadeo-critico 1s infinite;
+    border: 2px solid #ff1744 !important;
+}
+
+/* Barra de progreso para graficar el Variador de Frecuencia (VFD) */
+.vfd-grafico-fondo {
+    width: 100%;
+    background-color: #424242;
+    border-radius: 4px;
+    margin-top: 15px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.vfd-grafico-valor {
+    height: 100%;
+    background-color: #1976d2;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Ajustes para cuando el sistema está aislado */
+.sensor-card.aislado {
+    opacity: 0.5;
+    border-left-color: #757575;
+}

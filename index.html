@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCADA - Distrito Térmico Canelones</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Panel de Control SCADA | UTU - ADP</h1>
+        <div class="status-indicator">
+            <span class="dot online"></span> Sistema Operativo
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <section class="panel telemetria">
+            <h2>Telemetría de Red Térmica</h2>
+            <div class="sensor-grid">
+                <div class="sensor-card">
+                    <h3>Temp. Salida Google</h3>
+                    <p id="temp-google" class="sensor-value">42.5 °C</p>
+                </div>
+                <div class="sensor-card">
+                    <h3>Temp. Llegada ADP</h3>
+                    <p id="temp-adp" class="sensor-value">41.2 °C</p>
+                </div>
+                <div class="sensor-card">
+                    <h3>Presión Plenum</h3>
+                    <p id="presion-plenum" class="sensor-value">0.0 Pa</p>
+                </div>
+                <div class="sensor-card warning">
+                    <h3>NO2 Perimetral</h3>
+                    <p id="no2-nivel" class="sensor-value">45 µg/m³</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel actuadores">
+            <h2>Control de Actuadores</h2>
+            <div class="control-grid">
+                <div class="control-card">
+                    <h3>Bombas de Glicol (VFD)</h3>
+                    <p id="estado-bomba">Estado: Activo (75%)</p>
+                    <button id="btn-bomba" class="btn-primary">Detener Bombeo</button>
+                </div>
+                <div class="control-card alert-card">
+                    <h3>Protocolo Fail-Safe (< 500ms)</h3>
+                    <p id="estado-valvula">Válvula de Aislamiento: ABIERTA</p>
+                    <button id="btn-failsafe" class="btn-danger">ACTIVAR AISLAMIENTO</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
