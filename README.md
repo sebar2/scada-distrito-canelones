@@ -1,23 +1,23 @@
-# scada-distrito-canelones
-Plataforma HMI/SCADA de baja latencia para gestión de recuperación térmica industrial.
-Markdown
-# Distrito Térmico Canelones - Sistema SCADA (Demo)
+# 🏭 SCADA - Distrito Térmico Canelones (UTU-ADP)
 
-Este repositorio contiene el código fuente del frontend para el sistema de control distribuido (SCADA) diseñado para gestionar la transferencia térmica entre la infraestructura de refrigeración corporativa y la planta de agronegocios (ADP).
+Este repositorio contiene la arquitectura de la Interfaz Hombre-Máquina (HMI) del sistema de control distribuido para la recuperación térmica industrial entre el Data Center corporativo y la planta de ADP.
 
-## 🚀 Arquitectura y Stack Tecnológico
+## 📐 Arquitectura de Red y Sistemas Proyectada
 
-El sistema prioriza la **baja latencia y la mantenibilidad operativa**, eliminando dependencias de librerías de terceros (cero jQuery, cero frameworks pesados).
+El sistema está diseñado bajo una topología de misión crítica, segregando la capa de control de hardware de la capa de visualización corporativa.
 
-* **Frontend:** Vanilla JavaScript, utilizando métodos nativos (`querySelector`) para la manipulación directa del DOM y renderizado de alertas críticas en milisegundos.
-* **Diseño:** Estructura de archivos estrictamente desacoplada (CSS, JS y HTML aislados) para facilitar auditorías y mantenimiento.
-* **Backend Teórico:** Diseñado para interoperar con PostgreSQL (Historian de datos ambientales DINACEA) y PLCs Siemens S7-1200 vía Modbus TCP.
+* **Nivel 1 (Campo):** Autómatas Programables (ej. PLC Siemens S7-1200) y actuadores neumáticos con retorno por resorte (Fail-Safe < 500ms).
+* **Nivel 2 (Transporte):** Enlace de Fibra Óptica Monomodo (1km) utilizando protocolo Modbus TCP/IP sobre una VLAN industrial aislada.
+* **Nivel 3 (Backend & Data Historian):** Servidor Linux alojando base de datos PostgreSQL para el registro inmutable de telemetría y variables ambientales (Auditorías DINACEA).
+* **Nivel 4 (Frontend HMI - *Código en este repositorio*):** Cliente de visualización de muy baja latencia.
 
-## ⚙️ Características de la Interfaz
+## ⚡ Decisiones de Ingeniería de Software (Frontend)
 
-* Monitoreo en tiempo real de la temperatura del lazo de glicol.
-* Simulación del mecanismo Fail-Safe (< 500ms) para protección de servidores.
-* Alertas perimetrales para concentraciones de NO2.
+El cliente HMI fue desarrollado íntegramente en **Vanilla JavaScript** (cero dependencias de librerías de terceros) con manipulación directa del DOM mediante selectores nativos (`querySelector`). 
 
-## 🔗 Demostración en Vivo
-El dashboard funcional puede visualizarse en el siguiente enlace:https://sebarodriguez.github.io/scada-distrito-canelones
+**¿Por qué Vanilla JS?**
+1.  **Seguridad:** Eliminación de vulnerabilidades heredadas por dependencias de paquetes (NPM) de terceros.
+2.  **Rendimiento:** Carga instantánea en terminales de bajo consumo energético dentro del Centro de Operaciones de Red (NOC).
+3.  **Mantenibilidad:** Estructura modular estricta que facilita las auditorías de código por parte de entidades reguladoras.
+
+🔴 **Ver la demostración en vivo (Simulación Cliente)::https://sebarodriguez.github.io/scada-distrito-canelones
