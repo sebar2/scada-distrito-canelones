@@ -6,53 +6,72 @@
     <title>SCADA - Distrito Térmico Canelones</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="header">
-        <h1>Panel de Control SCADA | UTU - ADP</h1>
+        <h1>Centro de Operaciones de Red (NOC) | Distrito Térmico UTU-ADP</h1>
         <div class="status-indicator">
-            <span class="dot online"></span> Sistema Operativo
+            <span class="dot online"></span> Enlace Seguro Activo
         </div>
     </header>
 
     <main class="dashboard">
-        <section class="panel telemetria">
-            <h2>Telemetría de Red Térmica</h2>
-            <div class="sensor-grid">
-                <div class="sensor-card">
-                    <h3>Temp. Salida Google</h3>
-                    <p id="temp-google" class="sensor-value">42.5 °C</p>
+        <div class="col-main">
+            <section class="panel telemetria">
+                <h2>Telemetría de Red Térmica (Lazo Glicol 1km)</h2>
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <h3>Temp. Salida Teros</h3>
+                        <p id="temp-google" class="sensor-value">--.- °C</p>
+                    </div>
+                    <div class="sensor-card">
+                        <h3>Temp. Llegada Planta</h3>
+                        <p id="temp-adp" class="sensor-value">--.- °C</p>
+                    </div>
+                    <div class="sensor-card">
+                        <h3>Contrapresión Plenum</h3>
+                        <p id="presion-plenum" class="sensor-value">-.-- Pa</p>
+                    </div>
+                    <div class="sensor-card warning">
+                        <h3>NO2 Perimetral (DINACEA)</h3>
+                        <p id="no2-nivel" class="sensor-value">-- µg/m³</p>
+                    </div>
                 </div>
-                <div class="sensor-card">
-                    <h3>Temp. Llegada ADP</h3>
-                    <p id="temp-adp" class="sensor-value">41.2 °C</p>
-                </div>
-                <div class="sensor-card">
-                    <h3>Presión Plenum</h3>
-                    <p id="presion-plenum" class="sensor-value">0.0 Pa</p>
-                </div>
-                <div class="sensor-card warning">
-                    <h3>NO2 Perimetral</h3>
-                    <p id="no2-nivel" class="sensor-value">45 µg/m³</p>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="panel actuadores">
-            <h2>Control de Actuadores</h2>
-            <div class="control-grid">
-                <div class="control-card">
-                    <h3>Bombas de Glicol (VFD)</h3>
-                    <p id="estado-bomba">Estado: Activo (75%)</p>
-                    <button id="btn-bomba" class="btn-primary">Detener Bombeo</button>
+            <section class="panel grafico">
+                <h2>Tendencia Térmica en Tiempo Real</h2>
+                <div class="chart-container" style="position: relative; height:30vh; width:100%">
+                    <canvas id="scadaChart"></canvas>
                 </div>
-                <div class="control-card alert-card">
-                    <h3>Protocolo Fail-Safe (< 500ms)</h3>
-                    <p id="estado-valvula">Válvula de Aislamiento: ABIERTA</p>
-                    <button id="btn-failsafe" class="btn-danger">ACTIVAR AISLAMIENTO</button>
+            </section>
+        </div>
+
+        <div class="col-side">
+            <section class="panel actuadores">
+                <h2>Módulos de Actuación</h2>
+                <div class="control-grid">
+                    <div class="control-card">
+                        <h3>Bombas de Glicol (VFD)</h3>
+                        <p id="estado-bomba">Sincronizando...</p>
+                        <button id="btn-bomba" class="btn-primary">Detener Bombeo</button>
+                    </div>
+                    <div class="control-card alert-card">
+                        <h3>Protocolo Fail-Safe (< 500ms)</h3>
+                        <p id="estado-valvula">Válvula de Aislamiento: ABIERTA</p>
+                        <button id="btn-failsafe" class="btn-danger">ACTIVAR AISLAMIENTO</button>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="panel consola">
+                <h2>Registro de Eventos (Log)</h2>
+                <div class="terminal" id="terminal-log">
+                    <p class="log-line sys">> Sistema inicializado. Conexión Modbus TCP establecida.</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <script type="module" src="js/app.js"></script>

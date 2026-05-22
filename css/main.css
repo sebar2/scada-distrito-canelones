@@ -1,102 +1,38 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, sans-serif; background-color: #0d1117; color: #c9d1d9; }
 
-body {
-    font-family: system-ui, -apple-system, sans-serif;
-    background-color: #121212;
-    color: #ffffff;
-}
+.header { background-color: #161b22; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363d; }
+.status-indicator { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-family: monospace; color: #58a6ff; }
+.dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 8px currentColor; }
+.dot.online { background-color: #3fb950; color: #3fb950; }
+.dot.offline { background-color: #f85149; color: #f85149; }
 
-.header {
-    background-color: #1e1e1e;
-    padding: 1.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #333;
-}
+.dashboard { padding: 1.5rem; display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 1600px; margin: 0 auto; }
+@media (min-width: 1024px) { .dashboard { grid-template-columns: 2fr 1fr; } }
 
-.status-indicator {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: bold;
-}
+.col-main, .col-side { display: flex; flex-direction: column; gap: 1.5rem; }
 
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
+.panel { background-color: #161b22; border-radius: 6px; padding: 1.25rem; border: 1px solid #30363d; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+.panel h2 { margin-bottom: 1.25rem; font-size: 1.1rem; color: #8b949e; text-transform: uppercase; letter-spacing: 1px; }
 
-.dot.online { background-color: #00e676; }
-.dot.offline { background-color: #ff1744; }
+.sensor-grid, .control-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.control-grid { grid-template-columns: 1fr; }
 
-.dashboard {
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
+.sensor-card, .control-card { background-color: #0d1117; padding: 1.25rem; border-radius: 4px; border-left: 4px solid #3fb950; }
+.sensor-card.warning { border-left-color: #d29922; }
+.alert-card { border-left-color: #f85149; }
 
-@media (min-width: 1024px) {
-    .dashboard { grid-template-columns: 2fr 1fr; }
-}
+.sensor-card h3, .control-card h3 { font-size: 0.85rem; color: #8b949e; margin-bottom: 0.5rem; }
+.sensor-value { font-size: 2rem; font-weight: bold; color: #ffffff; font-family: monospace; }
 
-.panel {
-    background-color: #1e1e1e;
-    border-radius: 8px;
-    padding: 1.5rem;
-}
+button { margin-top: 1rem; padding: 0.8rem; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px;}
+button:hover { filter: brightness(1.2); }
+.btn-primary { background-color: #1f6feb; color: white; border: 1px solid #388bfd; }
+.btn-danger { background-color: #da3633; color: white; border: 1px solid #f85149; }
 
-.panel h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-    color: #90caf9;
-}
-
-.sensor-grid, .control-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.sensor-card, .control-card {
-    background-color: #2d2d2d;
-    padding: 1rem;
-    border-radius: 6px;
-    border-left: 4px solid #00e676;
-}
-
-.sensor-card.warning { border-left-color: #ffb300; }
-.alert-card { border-left-color: #ff1744; }
-
-.sensor-card h3, .control-card h3 {
-    font-size: 0.9rem;
-    color: #aaaaaa;
-    margin-bottom: 0.5rem;
-}
-
-.sensor-value {
-    font-size: 1.8rem;
-    font-weight: bold;
-}
-
-button {
-    margin-top: 1rem;
-    padding: 0.75rem 1rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    transition: opacity 0.2s;
-}
-
-button:hover { opacity: 0.8; }
-
-.btn-primary { background-color: #1976d2; color: white; }
-.btn-danger { background-color: #d32f2f; color: white; }
+/* Consola Log */
+.terminal { background-color: #010409; border: 1px solid #30363d; border-radius: 4px; padding: 1rem; height: 30vh; overflow-y: auto; font-family: monospace; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.3rem;}
+.log-line { color: #8b949e; }
+.log-line.sys { color: #58a6ff; }
+.log-line.warn { color: #d29922; }
+.log-line.crit { color: #f85149; font-weight: bold; }
