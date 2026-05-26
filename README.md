@@ -1,6 +1,6 @@
-# 🏭 SCADA - Distrito Térmico Canelones (UTU-ADP)
+# 🏭 SCADA - Distrito Térmico Canelones (UTU-Inversor)
 
-Este repositorio contiene la arquitectura de la Interfaz Hombre-Máquina (HMI) del sistema de control distribuido para la recuperación térmica industrial entre el Data Center corporativo y la planta de ADP.
+Este repositorio contiene la arquitectura de la Interfaz Hombre-Máquina (HMI) del sistema de control distribuido para la recuperación térmica industrial entre el Data Center corporativo y la planta de inversor.
 
 ## 📐 Arquitectura de Red y Sistemas Proyectada
 
